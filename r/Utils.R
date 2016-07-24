@@ -10,18 +10,6 @@ keepFirstWord <- function(string){
   return(string)
 }
 
-filterPalmes <- function(dataFrame, onlyPalm){
-  #keep only palmes d'or nominations if desired
-  
-  if(length(dataFrame) > 0){
-    if(onlyPalm == TRUE){
-      dataFrame <- dataFrame[dataFrame$`Palme d'Or` == 1,]
-    }
-  }
-  
-  return(dataFrame)
-}
-
 createCountDataFrame <- function(vector, fieldName, quantityName){
   # create a data frame containing the count of each of a (char) vector member
   
@@ -67,8 +55,19 @@ createPieChartsRow <- function(dataPerDecades, oderedDecades, start, stop, size)
   return(initialPie)
 }
 
+# --------- Data related functions -----------------
 
-# --------- specific data related functions -----------------
+filterPalmes <- function(dataFrame, onlyPalm){
+  #keep only palmes d'or nominations if desired
+  
+  if(length(dataFrame) > 0){
+    if(onlyPalm == TRUE){
+      dataFrame <- dataFrame[dataFrame$`Palme d'Or` == 1,]
+    }
+  }
+  
+  return(dataFrame)
+}
 
 createCleanNominations <- function(dataFrame, onlyPalm){
   # create a data frame containing the number of nominations per country. Can filter to keep only palmes
