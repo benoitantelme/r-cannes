@@ -7,8 +7,6 @@ rm(list=ls())
 path = "D:/data/prog/R/CannesData/CannesLight.xlsx"
 library(readxl)
 myData = read_excel(path, "Combined")
-#warnings()
-
 
 
 # --------- cleaning data frame ------------
@@ -25,22 +23,13 @@ library(googleVis)
 
 # --------- plotting palmes in map -----------------
 cleanedNominations <- createCleanNominations(myNewData, TRUE)
-plotDataFrame(cleanedNominations, "Country", "Nominations", "Nominations Per Country", 1280, 800)
+plotDfAsGeoChart(cleanedNominations, "Country", "Nominations", "Nominations Per Country", 1280, 800)
 
 
 
 # --------- plotting genre per decade as pie -----------------
-
-# TODO finish the merge method
-#pieCharts <- mergeGPDPiecharts(myNewData)
-
-firstPie <- createGenresPerDecadePieChart(myNewData, 1990, 400)
-secondPie <- createGenresPerDecadePieChart(myNewData, 2000, 400)
-pies <- gvisMerge(firstPie,secondPie, horizontal=TRUE) 
-
-
-
-plot(pies)
-
-
-
+palmesData <- filterPalmes(myNewData, TRUE)
+dataPerDecades = split(palmesData, f = palmesData$`Cannes decade`)
+oderedDecades <- sort(unique(myNewData$`Cannes decade`))
+pieCharts <- mergeGPDPiecharts(dataPerDecades, oderedDecades, 350)
+plot(pieCharts)

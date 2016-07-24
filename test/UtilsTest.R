@@ -32,28 +32,6 @@ test.filterPalmes <- function()
 }
 
 
-test.filterDecades <- function()
-{
-  df <- cbind.data.frame(c("France", "Germany"), c(1, 0))
-  colnames(df) <- c("IMDb Country", "Cannes decade")
-  
-  one <- filterDecades(df, 1)
-  checkEquals(1, nrow(one))
-  
-  none <- filterDecades(df, 2)
-  checkEquals(0, nrow(none))
-  
-  #check no filtering
-  minusOne <- filterDecades(df, -1)
-  checkEquals(2, nrow(minusOne))
-  
-  #check null vector does not break
-  nullVector <- vector()
-  nullNoCheck <- filterDecades(nullVector, 1)
-}
-
-
-
 test.createCountDataFrame <- function()
 {
   vector <- c("France", "Germany", "UK", "France", "HK", "China", "USA", "HK")
