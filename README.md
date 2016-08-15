@@ -17,4 +17,3 @@ Also, I could not use the apply functions as much as I wanted to create the pie 
   
   
 Thanks to Stephen Follows for the initial csv data set, which is not distributed here.
-https://github.com/benoitantelme/r-cannes
